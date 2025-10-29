@@ -1,0 +1,82 @@
+[
+   {
+      "company":"Ecovalor Consultoria e Assessoria em Sustentabiliade LTDA",
+      "sector":"ESG Consulting",
+      "mission":"Guiar organizações rumo às melhores práticas de sustentabilidade, atuando em todo Brasil e oferecendo suporte a empresas de diversos setores e tamanhos.",
+      "vision":null,
+      "values":[
+         "Conectar",
+         "Solucionar",
+         "Inovar",
+         "Re(voluir)"
+      ]
+   },
+   {
+      "company":"Florestal Alto Uruguai",
+      "sector":"ESG Consulting",
+      "mission":"Entregar sustentabilidade com acurácia, inovação e simplicidade.",
+      "vision":"Ser referência nos setores em que atuamos, admirada por nossos clientes e lembrada por fazer diferente.",
+      "values":[
+         "Confiança",
+         "Transparência",
+         "Encantamento"
+      ]
+   },
+   {
+      "company":"Weber Ambiental",
+      "sector":"ESG Consulting",
+      "mission":"Contribuir para a melhoria da condição ambiental e social do país, incluindo áreas de vulnerabilidade, proporcionando saúde e qualidade de vida.",
+      "vision":"Até 2030, ser reconhecida nacionalmente pela atuação e, principalmente, inovação em técnicas relacionadas a diagnóstico e reabilitação de áreas contaminadas, recuperação energética a partir de resíduos e valoração de lodos de ETEs.",
+      "values":[
+         "Confidencialidade",
+         "Excelência",
+         "Ética",
+         "Pessoas",
+         "Qualidade",
+         "Transparência",
+         "Inovação",
+         "Comprometimento"
+      ]
+   },
+   {
+      "company":"Carbonext",
+      "sector":"ESG Consulting",
+      "mission":"Promover a conservação, restauração e transformação socioeconômica de biomas brasileiros sob pressão de degradação, recalibrando as relações entre empresas, indivíduos e a natureza para enfrentar os desafios das mudanças climáticas de forma eficaz.",
+      "vision":"Ser reconhecida como um dos principais nomes do mundo em soluções eficientes e inovadoras para empresas que queiram repensar suas relações com a natureza, contribuindo para a construção de uma economia sustentável, com justiça social e preservação ambiental.",
+      "values":[
+         "Transparência",
+         "Sustentabilidade",
+         "Ética",
+         "Comprometimento",
+         "Colaboração"
+      ]
+   },
+   {
+      "company":"Gestão Samaúma",
+      "sector":"ESG Consulting",
+      "mission":"Transformar pessoas e organizações melhores para o mundo.",
+      "vision":"Disseminar novos jeitos de fazer negócios que gerem impacto socioambiental positivo.",
+      "values":[
+         "Empoderamento feminino",
+         "Visão ecossistêmica",
+         "Inovação disruptiva",
+         "Relações de confiança",
+         "Cada projeto é único"
+      ]
+   },
+   {
+      "company":"WayCarbon",
+      "sector":"ESG Consulting",
+      "mission":"Catalyze a globally just and resilient transition to a net-zero economy.",
+      "vision":"We envision a world in which all organizations actively contribute to the transition to a net-zero global economy, promoting environmental sustainability, social equity and climate resilience.",
+      "values":[
+         "We make positive impacts on society.",
+         "We value science and innovation.",
+         "We see complementarity in differences and value diversity and freedom of opinion.",
+         "We are experts, creating and delivering value internally and externally.",
+         "We take pride in what we do and only engage in what we can be proud of.",
+         "We delight our customers and build lasting relationships.",
+         "We take full responsibility for our actions and foster a sense of teamwork."
+      ]
+   }
+]
