@@ -1,25 +1,24 @@
 {
-  "generation_date": "2025-11-03T12:49:48.219085",
+  "generation_date": "2025-10-29T03:02:18.395442",
   "model": "brunoconterato/Gemma-3-Gaia-PT-BR-4b-it:f16",
-  "methodology": "Hybrid: LLM for narrative docs, Rule-based for DRE",
+  "methodology": "Seed-guided synthetic data generation",
   "seed_companies_count": 6,
-  "seed_companies_sector": "Consultoria ESG",
+  "seed_companies_sector": "Brazilian ESG Consulting",
   "documents_generated": [
     "Mission_Vision_Values",
-    "DRE (Rule-based Python)",
     "Social_Impact_Report",
     "Business_Model_Canvas",
     "SWOT_Analysis"
   ],
-  "configuration": {
-    "target_porte": "PEQUENA",
-    "target_sector": "Consultoria ESG",
-    "fiscal_year": 2024,
-    "random_seed": 42
-  },
   "generation_parameters": {
     "temperature": 0.7,
     "random_seed": 42
+  },
+  "notes": {
+    "doc1": "Pure seed-guided generation",
+    "doc3": "Augmented approach - seed themes + GRI framework structure",
+    "doc4": "Framework-guided - Osterwalder BMC + seed terminology",
+    "doc5": "Pure seed-guided generation"
   },
   "references": [
     "DocGenie: A Framework for High-Fidelity Synthetic Document Generation (Harikrishnan et al., 2025)",
