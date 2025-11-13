@@ -1,0 +1,32 @@
+{
+  "generation_date": "2025-11-12T22:25:11.840191",
+  "model": "brunoconterato/Gemma-3-Gaia-PT-BR-4b-it:f16",
+  "methodology": "Hybrid: LLM for narrative docs, Rule-based for DRE",
+  "seed_companies_count": 6,
+  "seed_companies_sector": "Consultoria ESG",
+  "documents_generated": [
+    "Mission_Vision_Values",
+    "DRE (Rule-based Python)",
+    "Social_Impact_Report",
+    "Business_Model_Canvas",
+    "SWOT_Analysis"
+  ],
+  "configuration": {
+    "target_porte": "MICROEMPRESA",
+    "target_sector": "Consultoria ESG",
+    "fiscal_year": 2024,
+    "random_seed": 62
+  },
+  "generation_parameters": {
+    "temperature": [
+      0.7,
+      1
+    ],
+    "random_seed": 62
+  },
+  "references": [
+    "DocGenie: A Framework for High-Fidelity Synthetic Document Generation (Harikrishnan et al., 2025)",
+    "On LLMs-Driven Synthetic Data Generation, Curation, and Evaluation: A Survey (Long et al., 2024)",
+    "SynEval: A Multi-Faceted Evaluation Framework (Paper 3)"
+  ]
+}

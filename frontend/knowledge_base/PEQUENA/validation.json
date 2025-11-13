@@ -1,0 +1,46 @@
+{
+    "dre_validation": {
+        "porte_match": true,
+        "employees_match": true,
+        "revenue_match": true,
+        "accounting_valid": true
+    },
+    "cross_document_consistency": {
+        "checks_passed": 4,
+        "checks_total": 4,
+        "details": {
+            "size_consistency": true,
+            "geography_consistency": true,
+            "service_consistency": true,
+            "values_reflection": true
+        },
+        "consistency_score": 1.0
+    },
+    "structure_preservation": {
+        "doc1_mvv": 1.0,
+        "doc3_impact": 1.0,
+        "doc4_bmc": 1.0,
+        "doc5_swot": 1.0,
+        "overall_sps": 1.0
+    },
+    "semantic_similarity": {
+        "mission": {
+            "mean_similarity": 0.4523416757583618,
+            "max_similarity": 0.5927572250366211,
+            "std_similarity": 0.10553708672523499,
+            "memorization_risk": false
+        },
+        "values": {
+            "mean_similarity": 0.5860658288002014,
+            "max_similarity": 0.7622818946838379,
+            "std_similarity": 0.10437565296888351,
+            "memorization_risk": false
+        },
+        "overall": {
+            "mean_similarity": 0.5694672465324402,
+            "max_similarity": 0.6726503372192383,
+            "std_similarity": 0.0771915465593338,
+            "memorization_risk": false
+        }
+    }
+}
