@@ -10,7 +10,7 @@ st.set_page_config(
 )
 
 # Backend URL
-BACKEND_URL = st.secrets.get("BACKEND_URL", "https://cemasystem-production.up.railway.app")
+BACKEND_URL = st.secrets.get("BACKEND_URL")
 
 st.title("💬 Sistema CEMA - Análise Multi-Agente")
 st.markdown("### *Etapa 2: Interagir com o Sistema*")
