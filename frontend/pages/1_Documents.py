@@ -24,7 +24,8 @@ company_type = st.radio(
 st.info(f"📂 **Visualizando documentos da empresa:** {company_type}")
 
 # Knowledge base path
-kb_path = Path(f"knowledge_base/{company_type}")
+current_dir = Path(__file__).parent.parent  # Go up to project root
+kb_path = current_dir / "knowledge_base" / company_type
 
 # Document tabs
 tab1, tab2, tab3, tab4, tab5 = st.tabs([
