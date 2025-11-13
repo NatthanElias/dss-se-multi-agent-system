@@ -7,7 +7,7 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-st.title("🤖 CEMA - Conselho Executivo Multi-Agente")
+st.title("CEMA - Conselho Executivo Multi-Agente")
 st.markdown("### *Sistema de Apoio à Decisão Estratégica*")
 st.markdown("---")
 
