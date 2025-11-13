@@ -1,5 +1,5 @@
 from google.adk.agents import Agent
-from prompts.ceo_prompt import get_prompt
+from ..prompts.ceo_prompt import get_prompt
 
 instruction = get_prompt()
 

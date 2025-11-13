@@ -1,6 +1,6 @@
 from pathlib import Path
 from google.adk.agents import Agent
-from prompts.cro_prompt import get_prompt
+from ..prompts.cro_prompt import get_prompt
 
 
 def load_knowledge_base() -> str:
