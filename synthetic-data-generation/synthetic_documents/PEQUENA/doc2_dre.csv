@@ -1,0 +1,22 @@
+Linha,Descrição,Valor (R$)
+METADATA,Empresa ID,SYNTH_ESG_001
+METADATA,Porte,PEQUENA
+METADATA,Ano,2024
+METADATA,Funcionários,41
+,,
+1,RECEITA BRUTA,3394061.98
+2,(-) Deduções da Receita,-352939.97
+3,= RECEITA LÍQUIDA,3041122.01
+4,(-) Custos dos Serviços Prestados,-1271934.53
+5,= LUCRO BRUTO,1769187.48
+6,(-) Despesas Operacionais,-1423846.31
+7,= EBIT (Resultado Operacional),345341.16
+8,(+/-) Resultado Financeiro,-2484.3
+9,= LAIR (Lucro Antes dos Impostos),342856.86
+10,(-) CSLL,-30857.12
+11,(-) IRPJ,-51428.53
+12,= LUCRO LÍQUIDO,260571.21
+,,
+INDICADOR,Margem Bruta,58.18%
+INDICADOR,Margem Operacional (EBIT),11.36%
+INDICADOR,Margem Líquida,8.57%
