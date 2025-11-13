@@ -1,6 +1,8 @@
 from pathlib import Path
 from google.adk.agents import Agent
 from ..prompts.cro_prompt import get_prompt
+from ..config import config, get_model_for_agent
+from google.genai import types
 
 
 def load_knowledge_base() -> str:
@@ -37,12 +39,18 @@ def load_knowledge_base() -> str:
 knowledge_base = load_knowledge_base()
 
 # Get prompt with KB injected
-instruction = get_prompt(knowledge_base)
+instruction = get_prompt(knowledge_base) + f"\n\n{config.language.language_instruction}"
 
 cro_agent = Agent(
-    model="gemini-2.5-flash",
+    model=get_model_for_agent("cro"),
     name="cro_agent",
     description="Chief Risk Officer - analyzes strategic risks using SWOT",
     instruction=instruction,
-    output_key="cro_analysis"
+    output_key="cro_analysis",
+    generate_content_config=types.GenerateContentConfig(
+        temperature=config.model.temperature,
+        max_output_tokens=config.model.max_tokens,
+        top_p=config.model.top_p,
+        top_k=config.model.top_k
+    )
 )
