@@ -1,8 +1,10 @@
 from google.adk.agents import Agent
-from google.adk.tools import AgentTool
+from google.genai import types
 from google.adk.tools import google_search
 from pathlib import Path
 from ..prompts.cmo_prompt import get_prompt
+from ..config import config, get_model_for_agent
+
 
 def load_knowledge_base() -> str:
     """
@@ -39,21 +41,24 @@ def load_knowledge_base() -> str:
     except Exception as e:
         return f"ERROR loading knowledge base: {str(e)}"
 
-# 1. Load Static Knowledge
+# Load Static Knowledge
 knowledge_base = load_knowledge_base()
 
-# 2. Get Prompt
-prompt = get_prompt(knowledge_base)
+# Get prompt with language instruction
+instruction = get_prompt(knowledge_base) + f"\n\n{config.language.language_instruction}"
 
 # 3. Instantiate Agent with Tools
 cmo_agent = Agent(
-    model="gemini-2.5-flash",
+    model=get_model_for_agent("cmo"),
     name="cmo_agent",
     description="Chief Marketing Officer - analyzes market and competition using Search",
-    instruction=prompt,
+    instruction=instruction,
     tools=[google_search],
-    output_key="cmo_analysis"
+    output_key="cmo_analysis",
+    generate_content_config=types.GenerateContentConfig(
+        temperature=config.model.temperature,
+        max_output_tokens=config.model.max_tokens,
+        top_p=config.model.top_p,
+        top_k=config.model.top_k
+    )
 )
-
-# Wrap as Tool for the Coordinator
-# cmo_tool = AgentTool(cmo_agent)

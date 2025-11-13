@@ -28,9 +28,6 @@ def get_prompt() -> str:
     **CMO Analysis:**
     {cmo_analysis}
 
-    **CFO Analysis:**
-    {cfo_analysis}
-
     **CRO Analysis:**
     {cro_analysis}
 

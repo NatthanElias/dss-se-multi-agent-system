@@ -13,13 +13,30 @@ class ModelConfig:
     cmo_model: Optional[str] = None
     cfo_model: Optional[str] = None
     cro_model: Optional[str] = None
-    ceo_model: Optional[str] = None # "gemini-2.5-pro"
-    
+    ceo_model: Optional[str] = "gemini-2.5-pro" # "gemini-2.5-pro"
+
     # Generation parameters
     temperature: float = 0.3
     max_tokens: int = 8000
     top_p: float = 0.95
     top_k: int = 40
+
+
+@dataclass
+class AgentConfig:
+    # Enable/disable specific agents (for testing)
+    enable_cso: bool = True
+    enable_cmo: bool = True
+    enable_cfo: bool = True
+    enable_cro: bool = True
+    enable_ceo: bool = True
+    
+    # Timeout per agent (seconds)
+    timeout: int = 120
+    
+    # Retry configuration
+    max_retries: int = 10
+    retry_delay: float = 2.0  # seconds
 
 
 @dataclass
@@ -48,7 +65,7 @@ class KnowledgeBaseConfig:
     base_path: Path = Path(__file__).parent.parent / "knowledge_base"
     
     # Organization size: 'PEQUENA', 'MEDIA', 'GRANDE'
-    org_size: Literal['PEQUENA', 'MEDIA', 'GRANDE'] = 'PEQUENA'
+    org_size: Literal['MICROEMPRESA', 'PEQUENA', 'MEDIA', 'GRANDE'] = 'PEQUENA'
     
     # Document filenames (can override if different naming)
     doc1_mission: str = "doc1_mission_vision_values.md"
@@ -60,23 +77,6 @@ class KnowledgeBaseConfig:
     @property
     def kb_path(self) -> Path:
         return self.base_path / self.org_size
-
-
-@dataclass
-class AgentConfig:
-    # Enable/disable specific agents (for testing)
-    enable_cso: bool = True
-    enable_cmo: bool = True
-    enable_cfo: bool = True
-    enable_cro: bool = True
-    enable_ceo: bool = True
-    
-    # Timeout per agent (seconds)
-    timeout: int = 120
-    
-    # Retry configuration
-    max_retries: int = 3
-    retry_delay: float = 2.0  # seconds
 
 
 @dataclass
@@ -156,7 +156,6 @@ def update_config_from_env():
     if log_level := os.getenv('CEMA_LOG_LEVEL'):
         if log_level in ['DEBUG', 'INFO', 'WARNING', 'ERROR']:
             config.system.log_level = log_level
-
-
+    
 # Auto-load from environment on import
 update_config_from_env()
