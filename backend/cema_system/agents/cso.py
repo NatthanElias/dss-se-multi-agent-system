@@ -1,6 +1,8 @@
 from google.adk.agents import Agent
+from google.genai import types
 from pathlib import Path
 from ..prompts.cso_prompt import get_prompt
+from ..config import config, get_model_for_agent
 
 
 def load_knowledge_base() -> str:
@@ -52,13 +54,19 @@ def load_knowledge_base() -> str:
 # Load knowledge base
 knowledge_base = load_knowledge_base()
 
-# Load prompt from prompts module
-prompt = get_prompt(knowledge_base)
+# Get prompt with language instruction
+instruction = get_prompt(knowledge_base) + f"\n\n{config.language.language_instruction}"
 
 cso_agent = Agent(
-    model="gemini-2.5-flash",
+    model=get_model_for_agent("cso"),
     name="cso_agent",
     description="Chief Social Officer - analyzes social impact",
-    instruction=prompt,
-    output_key="cso_analysis"
+    instruction=instruction,
+    output_key="cso_analysis",
+    generate_content_config=types.GenerateContentConfig(
+        temperature=config.model.temperature,
+        max_output_tokens=config.model.max_tokens,
+        top_p=config.model.top_p,
+        top_k=config.model.top_k
+    )
 )
