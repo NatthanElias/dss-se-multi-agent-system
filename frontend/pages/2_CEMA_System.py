@@ -73,6 +73,16 @@ def call_cema(prompt: str, company_type: str):
             ]
         }
     }
+
+    # ============================================================================
+    # DEBUG: Show what we're sending
+    # ============================================================================
+    with st.expander("🔧 DEBUG - Request Info", expanded=False):
+        st.json({
+            "backend_url": BACKEND_URL,
+            "endpoint": f"{BACKEND_URL}/run",
+            "payload": payload
+        })
     
     try:
         response = requests.post(
@@ -81,6 +91,16 @@ def call_cema(prompt: str, company_type: str):
             headers={"Content-Type": "application/json"},
             timeout=180
         )
+
+        # ============================================================================
+        # DEBUG: Show response
+        # ============================================================================
+        with st.expander("🔧 DEBUG - Response Info", expanded=False):
+            st.code(f"Status: {response.status_code}")
+            st.code(f"Response length: {len(response.text)} chars")
+            if response.status_code != 200:
+                st.code(response.text)
+        # ============================================================================
         
         if response.status_code == 200:
             return response.json()
