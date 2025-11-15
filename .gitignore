@@ -112,3 +112,7 @@ venv.bak/
 *.swp
 *.swo
 *.swn
+
+# deploy files
+.devcontainer
+.devcontainer/
