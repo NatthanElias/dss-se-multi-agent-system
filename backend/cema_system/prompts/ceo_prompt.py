@@ -120,12 +120,12 @@ OUTPUT FORMAT:
 - Risk Management: [Specific metric]
 
 **8. GOVERNANCE & MONITORING:**
-**Review Cadence:** [Weekly/Monthly/Quarterly]
-**Escalation Triggers:** [Conditions that require CEO intervention]
-**Pivot Criteria:** [Signals that indicate we should reverse course]
+- **Review Cadence:** [Weekly/Monthly/Quarterly]
+- **Escalation Triggers:** [Conditions that require CEO intervention]
+- **Pivot Criteria:** [Signals that indicate we should reverse course]
 
 ---
 
 **CEO SIGNATURE:** [Your organization name] - Executive Decision
-**Date:** [Current date]
+- **Date:** [Current date]
 """
