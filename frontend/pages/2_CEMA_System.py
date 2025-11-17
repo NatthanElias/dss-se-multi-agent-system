@@ -24,8 +24,6 @@ if "user_id" not in st.session_state:
     st.session_state.user_id = f"user_{uuid.uuid4().hex[:8]}"
 if "messages" not in st.session_state:
     st.session_state.messages = []
-if "company_selected" not in st.session_state:
-    st.session_state.company_selected = False
 if "session_created" not in st.session_state:
     st.session_state.session_created = False
 
@@ -44,7 +42,7 @@ def create_session():
         return False
 
 
-def call_cema(prompt: str, company_type: str):
+def call_cema(prompt: str):
     """Call CEMA backend with proper ADK format"""
     
     # Create session if not exists
@@ -56,9 +54,6 @@ def call_cema(prompt: str, company_type: str):
                 st.error("Falha ao criar sessão. Tente novamente.")
                 return None
     
-    # Build message with company context
-    full_message = f"CONTEXTO: Empresa {company_type}.\n\nPERGUNTA: {prompt}"
-    
     # ADK-compliant payload
     payload = {
         "app_name": "cema_system",
@@ -68,7 +63,7 @@ def call_cema(prompt: str, company_type: str):
             "role": "user",
             "parts": [
                 {
-                    "text": full_message
+                    "text": prompt
                 }
             ]
         }
@@ -203,7 +198,7 @@ with st.expander("💡 Sugestões de Perguntas Estratégicas", expanded=False):
                 status.write("CRO avaliando riscos...")
                 
                 start_time = time.time()
-                events = call_cema(q, st.session_state.company_type)
+                events = call_cema(q)
                 elapsed = time.time() - start_time
                 
                 if events:
@@ -286,7 +281,7 @@ if prompt := st.chat_input("Digite sua pergunta estratégica aqui..."):
         status.write("CRO avaliando riscos...")
         
         start_time = time.time()
-        events = call_cema(prompt, st.session_state.company_type)
+        events = call_cema(prompt)
         elapsed = time.time() - start_time
         
         if events:
