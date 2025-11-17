@@ -135,73 +135,51 @@ def parse_cema_response(events_array):
     return analyses
 
 
-# Step 1: Company Selection
-if not st.session_state.company_selected:
-    st.markdown("## Etapa 2.1: Selecione a Empresa")
-    st.info("Escolha qual empresa você deseja usar como contexto para as análises do CEMA")
-    
-    col1, col2 = st.columns(2)
-    
-    with col1:
-        st.markdown("### PEQUENA")
-        st.caption("Empresa de pequeno porte")
-        if st.button("Selecionar PEQUENA", use_container_width=True, type="primary"):
-            st.session_state.company_type = "PEQUENA"
-            st.session_state.company_selected = True
-            st.rerun()
-    
-    with col2:
-        st.markdown("### MICROEMPRESA")
-        st.caption("Empresa de micro porte")
-        if st.button("Selecionar MICROEMPRESA", use_container_width=True, type="primary"):
-            st.session_state.company_type = "MICROEMPRESA"
-            st.session_state.company_selected = True
-            st.rerun()
-    
-    st.markdown("---")
-    st.warning("Selecione uma empresa acima para continuar")
-    st.stop()
-
-# Display selected company
-st.success(f"Empresa selecionada: **{st.session_state.company_type}**")
+# Display company info (fixed)
+st.info(f"📊 **Contexto da Análise:** Empresa de Pequeno Porte (PEQUENA)")
 
 # Suggested questions - ESG CONSULTING SPECIFIC
-with st.expander("Sugestões de Perguntas Estratégicas", expanded=True):
+with st.expander("💡 Sugestões de Perguntas Estratégicas", expanded=False):
     st.markdown("""
-    ### Expansão e Crescimento
-    - Devo expandir o atendimento de 800 para 1200 beneficiários em 6 meses, contratando 15 educadores e aumentando orçamento em 35%?
-    - Vale a pena abrir uma filial em outra região do Brasil para atender novos mercados?
-    - É viável dobrar a equipe de consultores ESG nos próximos 12 meses?
+    ### 📈 Expansão e Crescimento
+    - Devo expandir de 25 para 40 clientes nos próximos 12 meses, contratando 8 novos consultores?
+    - Vale a pena abrir um escritório comercial em São Paulo para prospecção no Sudeste?
+    - É viável aumentar a equipe de 41 para 55 funcionários até o final de 2026?
     
-    ### Investimentos e Tecnologia
-    - Devo investir R$ 500.000 em uma plataforma SaaS para gestão de relatórios ESG?
-    - Vale a pena desenvolver um software próprio de monitoramento de métricas de sustentabilidade?
-    - É o momento de contratar um CTO e formar equipe de tecnologia?
+    ### 💰 Investimentos e Tecnologia
+    - Devo investir R$ 150.000 em CRM e ferramenta de gestão de projetos ESG?
+    - Vale a pena desenvolver uma calculadora online de pegada de carbono para PMEs?
+    - É o momento de contratar um especialista em tecnologia climática?
     
-    ### Parcerias e Alianças
-    - Devo aceitar parceria estratégica com grande consultoria internacional?
-    - Vale a pena firmar aliança com universidade para pesquisa em economia circular?
-    - É interessante criar joint-venture com startup de tecnologia climática?
+    ### 🤝 Parcerias e Alianças
+    - Devo firmar parceria com cooperativa de reciclagem para projetos de economia circular?
+    - Vale a pena criar aliança com incubadora de startups sustentáveis?
+    - É interessante associar-me à rede B-Corp para aumentar credibilidade?
     
-    ### Novos Produtos e Serviços
-    - Devo lançar serviço de certificação ESG própria?
-    - Vale a pena criar programa de capacitação online em sustentabilidade corporativa?
-    - É viável oferecer consultoria em créditos de carbono e mercado regulado?
+    ### 🎯 Novos Produtos e Serviços
+    - Devo lançar serviço de diagnóstico ESG rápido (R$ 5.000) para micro e pequenas empresas?
+    - Vale a pena criar curso online de introdução à economia circular?
+    - É viável oferecer consultoria em certificação de turismo sustentável?
     
-    ### Mercado e Posicionamento
-    - Devo focar exclusivamente em PMEs ou expandir para grandes empresas?
-    - Vale a pena especializar-se em um setor específico (ex: agronegócio sustentável)?
-    - É estratégico participar de edital governamental de R$ 2 milhões para capacitação ESG?
+    ### 🌱 Mercado e Posicionamento  
+    - Devo especializar a empresa exclusivamente em economia circular e deixar outros serviços ESG?
+    - Vale a pena focar apenas no setor de alimentos orgânicos e turismo sustentável?
+    - É estratégico participar de edital SEBRAE de R$ 300.000 para capacitação em ESG?
+    
+    ### ♻️ Sustentabilidade e Impacto
+    - Devo criar meta de reduzir 100 toneladas de CO2e através de projetos de clientes até 2026?
+    - Vale a pena implementar programa de certificação própria em economia circular?
+    - É viável criar laboratório de inovação em sustentabilidade com universidade local?
     """)
     
     st.markdown("---")
-    st.markdown("#### Clique para usar uma pergunta de exemplo:")
+    st.markdown("#### ⚡ Clique para usar uma pergunta de exemplo:")
     
-    # ESG-specific quick questions
+    # Realistic quick questions for PEQUENA company
     quick_questions = [
-        "Devo expandir atendimento de 800 para 1200 beneficiários em 6 meses, contratando 15 educadores e aumentando orçamento em 35%?",
-        "Vale a pena investir R$ 500.000 em plataforma SaaS para gestão de relatórios ESG?",
-        "Devo aceitar parceria estratégica com grande consultoria internacional de sustentabilidade?"
+        "Devo expandir de 25 para 40 clientes nos próximos 12 meses, contratando 8 novos consultores?",
+        "Vale a pena investir R$ 150.000 em CRM e ferramenta de gestão de projetos ESG?",
+        "Devo especializar a empresa exclusivamente em economia circular e deixar outros serviços ESG?"
     ]
     
     # Create buttons in columns
