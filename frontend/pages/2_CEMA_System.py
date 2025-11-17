@@ -359,7 +359,7 @@ if len(st.session_state.messages) >= 2:
     - Experiência geral de uso
     """)
     
-    form_url_2 = "https://forms.gle/SEU_LINK_FORMULARIO_2"
+    form_url_2 = "https://forms.gle/PxSZ8u6bi2dPRGWL7"
     
     col1, col2, col3 = st.columns([1, 2, 1])
     with col2:
