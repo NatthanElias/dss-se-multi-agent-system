@@ -1,0 +1,23 @@
+# Arquivo: .railwayignore
+
+# Ignorar o Git
+.git
+
+# Ignorar caches do Python
+__pycache__/
+*.pyc
+
+# Ignorar ambientes virtuais
+.venv/
+venv/
+env/
+
+# Ignorar arquivos de ambiente locais
+.env
+
+# Ignorar bancos de dados de teste
+*.db
+*.sqlite3
+
+# Ignorar logs
+*.log
