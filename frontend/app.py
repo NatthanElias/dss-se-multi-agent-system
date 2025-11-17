@@ -35,7 +35,7 @@ Visualize documentos reais de duas empresas de consultoria ESG:
 Após revisar, avalie a qualidade dos documentos.
 
 ### Etapa 2: Interagir com o Sistema CEMA
-- Escolha o tipo de empresa
+- A análise é relacionada a empresa **PEQUENA**
 - Faça perguntas estratégicas ao sistema
 - Veja análises de todos os 5 agentes especialistas
 - Receba uma recomendação executiva final
