@@ -16,25 +16,19 @@ O CEMA simula um conselho executivo com 5 agentes especialistas que analisam dil
 
 **Arquitetura:** Hybrid Multi-Agent System (Parallel + Sequential)
 
-## 🚀 Quick Start
+## 🚀 Setup
+
+Cheque os respectivos README.md.
 
 ### Backend (Sistema Multi-Agente)
-```bash
-cd backend
-# Ver backend/README.md
-```
+Ver backend/README.md
 
 ### Frontend (Interface Web)
-```bash
-cd frontend
-# Ver frontend/README.md
-```
+Ver frontend/README.md
 
 ### Geração de Dados Sintéticos (Opcional)
-```bash
-cd synthetic-data-generation
-# Ver synthetic-data-generation/README.md
-```
+Ver synthetic-data-generation/README.md
+
 
 ## 🔧 Stack Tecnológica
 
@@ -57,3 +51,4 @@ cd synthetic-data-generation
 ## 📄 Licença
 
 Material educacional de uso livre para fins acadêmicos.
+
