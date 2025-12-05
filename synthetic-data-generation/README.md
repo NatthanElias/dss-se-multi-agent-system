@@ -1,51 +1,54 @@
-# Geração de Dados Sintéticos - CEMA
+# Synthetic Data Generation - CEMA
 
-Pipeline de geração de documentos organizacionais sintéticos para empresas de consultoria ESG, utilizando LLMs locais via Ollama.
+Pipeline for generating synthetic organizational documents for ESG consulting firms, utilizing local LLMs via Ollama.
 
-## 🎯 Objetivo
+## 🎯 Objective
 
-Gerar documentos realistas de empresas brasileiras de consultoria ESG para uso no sistema CEMA, preservando confidencialidade de dados reais.
+Generate realistic documents for Brazilian ESG consulting firms for use in the CEMA system, preserving the confidentiality of real data.
 
-## 📊 Documentos Gerados
+## 📊 Generated Documents
 
-Para cada empresa sintética, são gerados 5 documentos:
+For each synthetic company, 5 documents are generated:
 
-1. **doc1_mission_vision_values.md** - Missão, Visão e Valores
-2. **doc2_dre.csv** - Demonstração do Resultado do Exercício
-3. **doc3_social_impact_report.md** - Relatório de Impacto Social
+1. **doc1_mission_vision_values.md** - Mission, Vision, and Values
+2. **doc2_dre.csv** - Income Statement (DRE)
+3. **doc3_social_impact_report.md** - Social Impact Report
 4. **doc4_business_model_canvas.md** - Business Model Canvas
-5. **doc5_swot_analysis.md** - Análise SWOT
+5. **doc5_swot_analysis.md** - SWOT Analysis
 
 ## 🚀 Setup
 
-### 1. Pré-requisitos
+### 1. Prerequisites
 
 - Python 3.10+
-- [Ollama](https://ollama.com/download) instalado
-- uv (gerenciador de pacotes) - recomendado
+- [Ollama](https://ollama.com/download) installed
+- uv (package manager) - recommended
 
-### 2. Instalar Ollama
+### 2. Install Ollama
 
 **Linux/Mac:**
 ```bash
-curl -fsSL https://ollama.com/install.sh | sh
-```
+curl -fsSL [https://ollama.com/install.sh](https://ollama.com/install.sh) | sh
+````
 
 **Windows:**
-- Baixe e instale de [ollama.com/download](https://ollama.com/download)
 
-### 3. Baixar modelo GAIA
+  - Download and install from [ollama.com/download](https://ollama.com/download)
+
+### 3\. Download GAIA model
+
 ```bash
 ollama pull brunoconterato/Gemma-3-Gaia-PT-BR-4b-it:f16
 ```
 
-**Modelo:** Gemma-3-Gaia-PT-BR-4b-it (ajustado para português brasileiro)  
-**Tamanho:** ~4GB  
-**Tempo de download:** ~5-10 minutos (depende da conexão)
+**Model:** Gemma-3-Gaia-PT-BR-4b-it (fine-tuned for Brazilian Portuguese)  
+**Size:** \~4GB  
+**Download time:** \~5-10 minutes (depends on connection)
 
-### 4. Instalar dependências Python
+### 4\. Install Python dependencies
 
-**Com uv (recomendado):**
+**With uv (recommended):**
+
 ```bash
 cd synthetic-data-generation
 uv venv
@@ -53,7 +56,8 @@ source .venv/bin/activate  # Windows: .venv\Scripts\activate
 uv sync
 ```
 
-**Com pip:**
+**With pip:**
+
 ```bash
 cd synthetic-data-generation
 python -m venv .venv
@@ -61,44 +65,50 @@ source .venv/bin/activate
 pip install jupyter pandas python-dotenv ollama
 ```
 
-### 5. Verificar setup
+### 5\. Verify setup
+
 ```bash
-# Verificar se Ollama está rodando
+# Check if Ollama is running
 ollama list
 
-# Deve aparecer: brunoconterato/Gemma-3-Gaia-PT-BR-4b-it:f16
+# Should appear: brunoconterato/Gemma-3-Gaia-PT-BR-4b-it:f16
 ```
 
-## 🔬 Executando a Pipeline
+## 🔬 Running the Pipeline
 
-### 1. Abrir Jupyter Notebook
+### 1\. Open Jupyter Notebook
+
 ```bash
 jupyter notebook synth_data_gen.ipynb
 ```
 
-Ou use VS Code com extensão Jupyter.
+Or use VS Code with Jupyter extension.
 
-### 2. Executar células sequencialmente
+### 2\. Execute cells sequentially
 
-O notebook contém:
+The notebook contains:
 
-**Estágio 1:** Geração do Perfil Organizacional
-- Define características da empresa (porte, localização, receita, funcionários)
-- Output: JSON estruturado
+**Stage 1:** Organizational Profile Generation
 
-**Estágio 2:** Geração da DRE (baseada em regras)
-- Calcula demonstrativo financeiro com precisão contábil
-- Usa benchmarks da indústria de consultoria
-- Output: CSV
+  - Defines company characteristics (size, location, revenue, employees)
+  - Output: Structured JSON
 
-**Estágio 3:** Geração de Documentos Narrativos
-- Gera 4 documentos Markdown usando LLM
-- Condicionado ao perfil + DRE (contexto consistente)
-- Output: 4 arquivos .md
+**Stage 2:** Income Statement Generation (Rule-Based)
 
-### 3. Validar outputs
+  - Calculates financial statement with accounting precision
+  - Uses consulting industry benchmarks
+  - Output: CSV
 
-Documentos gerados estarão em:
+**Stage 3:** Narrative Document Generation
+
+  - Generates 4 Markdown documents using LLM
+  - Conditioned on profile + Income Statement (consistent context)
+  - Output: 4 .md files
+
+### 3\. Validate outputs
+
+Generated documents will be at:
+
 ```
 synthetic_documents/PEQUENA/
 ├── doc1_mission_vision_values.md
@@ -108,100 +118,111 @@ synthetic_documents/PEQUENA/
 └── doc5_swot_analysis.md
 ```
 
-## ⚙️ Configuração
+## ⚙️ Configuration
 
-### Parâmetros do Modelo (no notebook)
+### Model Parameters (in notebook)
+
 ```python
-# Ajuste criatividade vs determinismo
-temperature = 0.7  # Padrão: 0.7 (0.0 = determinístico, 1.0 = criativo)
+# Adjust creativity vs determinism
+temperature = 0.7  # Default: 0.7 (0.0 = deterministic, 1.0 = creative)
 
-# Ajuste comprimento máximo dos documentos
-max_tokens = 2048  # Padrão: 2048
+# Adjust maximum document length
+max_tokens = 2048  # Default: 2048
 
-# Núcleo de amostragem
-top_p = 0.9  # Padrão: 0.9
+# Sampling nucleus
+top_p = 0.9  # Default: 0.9
 ```
 
-### Porte da Empresa
+### Company Size
 
-Modifique no notebook para gerar outros portes:
+Modify in the notebook to generate other sizes:
+
 ```python
-org_size = "PEQUENA"  # Opções: MICROEMPRESA, PEQUENA, MEDIA, GRANDE
+org_size = "PEQUENA"  # Options: MICROEMPRESA, PEQUENA, MEDIA, GRANDE
 ```
 
-## 📚 Metodologia
+## 📚 Methodology
 
-### Abordagem: Example-Guided Generation
+### Approach: Example-Guided Generation
 
-1. **Exemplos Semente:** 6 empresas reais certificadas Sistema B
-2. **In-Context Learning:** LLM aprende padrões dos exemplos
-3. **Multi-Stage Pipeline:** Garante consistência entre documentos
-4. **Rule-Based DRE:** Precisão matemática para dados financeiros
+1.  **Seed Examples:** 6 real B-Corp certified companies
+2.  **In-Context Learning:** LLM learns patterns from examples
+3.  **Multi-Stage Pipeline:** Ensures consistency between documents
+4.  **Rule-Based DRE:** Mathematical precision for financial data
 
-**Referências acadêmicas:**
-- Long et al. (2024). "LLMs for Synthetic Data Generation"
-- Gaia (2025). "Gemma-3-Gaia-PT-BR Model"
+**Academic references:**
 
-### Validação Automática
+  - Long et al. (2024). "LLMs for Synthetic Data Generation"
+  - Gaia (2025). "Gemma-3-Gaia-PT-BR Model"
 
-O notebook inclui validações:
-- ✅ Consistência de porte organizacional
-- ✅ Alinhamento geográfico
-- ✅ Estrutura de documentos (SPS = 100%)
-- ✅ Precisão financeira (DRE)
+### Automatic Validation
+
+The notebook includes validations:
+
+  - ✅ Organizational size consistency
+  - ✅ Geographic alignment
+  - ✅ Document structure (SPS = 100%)
+  - ✅ Financial precision (Income Statement)
 
 ## 🐛 Troubleshooting
 
-**Erro: "Ollama connection refused"**
-- Inicie Ollama: `ollama serve`
-- Verifique se está rodando: `ollama list`
+**Error: "Ollama connection refused"**
 
-**Erro: "Model not found"**
-- Baixe o modelo: `ollama pull brunoconterato/Gemma-3-Gaia-PT-BR-4b-it:f16`
+  - Start Ollama: `ollama serve`
+  - Verify it is running: `ollama list`
 
-**Geração lenta**
-- Normal para primeira execução (carregamento do modelo)
-- Modelo f16 é pesado (~4GB) mas mais preciso
-- Para GPU: Ollama usa automaticamente se disponível
+**Error: "Model not found"**
 
-**Documentos inconsistentes**
-- Ajuste `temperature` para 0.5 (mais determinístico)
-- Re-execute pipeline completa (não só uma célula)
+  - Download the model: `ollama pull brunoconterato/Gemma-3-Gaia-PT-BR-4b-it:f16`
 
-**Memória insuficiente**
-- Modelo requer ~8GB RAM
-- Use modelo quantizado menor se necessário: `Gemma-3-Gaia-PT-BR-4b-it:q4_0`
+**Slow generation**
 
-## 🔄 Gerando Múltiplas Empresas
+  - Normal for the first run (model loading)
+  - The f16 model is heavy (\~4GB) but more accurate
+  - For GPU: Ollama automatically uses it if available
 
-Para gerar mais de uma empresa:
+**Inconsistent documents**
 
-1. Execute notebook completo
-2. Mova outputs de `synthetic_documents/PEQUENA/` para backup
-3. Modifique `random_seed` no notebook
-4. Re-execute
+  - Adjust `temperature` to 0.5 (more deterministic)
+  - Re-run the complete pipeline (not just one cell)
 
-**Exemplo:**
+**Insufficient memory**
+
+  - Model requires \~8GB RAM
+  - Use a smaller quantized model if necessary: `Gemma-3-Gaia-PT-BR-4b-it:q4_0`
+
+## 🔄 Generating Multiple Companies
+
+To generate more than one company:
+
+1.  Run the complete notebook
+2.  Move outputs from `synthetic_documents/PEQUENA/` to backup
+3.  Modify `random_seed` in the notebook
+4.  Re-run
+
+**Example:**
+
 ```python
-random_seed = 42  # Empresa 1
-random_seed = 123  # Empresa 2
-random_seed = 999  # Empresa 3
+random_seed = 42   # Company 1
+random_seed = 123  # Company 2
+random_seed = 999  # Company 3
 ```
 
-## 📊 Outputs para CEMA
+## 📊 Outputs for CEMA
 
-Copie documentos gerados para o backend:
+Copy generated documents to the backend:
+
 ```bash
 cp -r synthetic_documents/PEQUENA/* ../backend/cema_system/knowledge_base/PEQUENA/
 ```
 
-## 📚 Referências
+## 📚 References
 
-- [Ollama Documentation](https://ollama.com/docs)
-- [Gemma Model Card](https://ai.google.dev/gemma)
-- [GAIA-PT-BR Paper](https://arxiv.org/abs/GAIA-reference)
-- Long et al. (2024). "LLMs as Synthetic Data Generators"
+  - [Ollama Documentation](https://ollama.com/docs)
+  - [Gemma Model Card](https://ai.google.dev/gemma)
+  - [GAIA-PT-BR Paper](https://arxiv.org/abs/GAIA-reference)
+  - Long et al. (2024). "LLMs as Synthetic Data Generators"
 
----
+-----
 
-**Nota:** Documentos sintéticos são para fins de teste e validação acadêmica. Não representam empresas reais.
+**Note:** Synthetic documents are for testing and academic validation purposes. They do not represent real companies.
