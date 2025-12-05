@@ -15,7 +15,7 @@ CEMA simulates an executive council with 5 specialist agents analyzing strategic
 - **🎯 CEO** - Chief Executive Officer (Synthesis and Final Decision)
 
 <div align="center">
-  <img src="static/tcc_DIAGRAMA_FinalBoss.drawio.png" alt="System diagram" width="500">
+  <img src="static/tcc_DIAGRAMA_FinalBoss.drawio.png" alt="System diagram" width="1200">
 </div>
 
 
@@ -55,3 +55,4 @@ See synthetic-data-generation/README.md
 ## 📄 License
 
 Educational material free for academic use.
+
