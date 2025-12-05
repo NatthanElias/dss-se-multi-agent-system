@@ -1,31 +1,36 @@
-# CEMA Backend - Sistema Multi-Agente
+# CEMA Backend - Multi-Agent System
 
-Backend do sistema CEMA implementado com Google ADK, contendo a arquitetura multi-agente e lógica de análise estratégica.
+CEMA system backend implemented with Google ADK, containing the multi-agent architecture and strategic analysis logic.
 
-## 🏗️ Arquitetura
+## 🏗️ Architecture
+<div align="center">
+  <img src="../static/tcc_DIAGRAMA_FinalBoss.drawio.png" alt="System diagram" width="500">
+</div>
+
 ```
 SequentialAgent (root)
-    └── ParallelAgent (council)
-            ├── CSO Agent (social impact)
-            ├── CMO Agent (market + google_search)
-            ├── CFO Agent (finance + python_repl)
-            └── CRO Agent (risk + SWOT)
-    └── CEO Agent (final synthesis)
+    └── ParallelAgent (council)
+            ├── CSO Agent (social impact)
+            ├── CMO Agent (market + google\_search)
+            ├── CFO Agent (finance + python\_repl)
+            └── CRO Agent (risk + SWOT)
+    └── CEO Agent (final synthesis)
 ```
 
-## 🚀 Setup Local
+## 🚀 Local Setup
 
-### 1. Instalar dependências
+### 1. Install dependencies
 
-**Com uv (recomendado):**
+**With uv (recommended):**
 ```bash
 cd backend
 uv venv
-source .venv/bin/activate  # Windows: .venv\Scripts\activate
+source .venv/bin/activate  # Windows: .venv\Scripts\activate
 uv pip install -r requirements.txt
-```
+````
 
-**Com pip:**
+**With pip:**
+
 ```bash
 cd backend
 python -m venv .venv
@@ -33,78 +38,94 @@ source .venv/bin/activate
 pip install -r requirements.txt
 ```
 
-### 2. Configurar API Key
+### 2\. Configure API Key
 
-1. Acesse https://aistudio.google.com/apikey
-2. Crie uma API key
-3. Copie `.env.example` para `.env`:
+1.  Go to https://aistudio.google.com/apikey
+2.  Create an API key
+3.  Copy `.env.example` to `.env`:
+
+<!-- end list -->
+
 ```bash
 cp .env.example .env
 ```
-4. Adicione sua chave no `.env`:
+
+4.  Add your key to `.env`:
+
+<!-- end list -->
+
 ```
-GOOGLE_API_KEY=sua_chave_aqui
+GOOGLE_API_KEY=your_key_here
 ```
 
-### 3. Rodar o sistema
+### 3\. Run the system
 
-**Modo CLI:**
+**CLI Mode:**
+
 ```bash
 cd cema_system
 adk run .
 ```
 
-**Modo Web UI:**
+**Web UI Mode:**
+
 ```bash
 cd cema_system
 adk web .
 ```
-Acesse http://localhost:8000
 
-## 🧪 Testando
+Access http://localhost:8000
 
-Exemplos de dilemas estratégicos:
+## 🧪 Testing
+
+Examples of strategic dilemmas:
+
 ```
-Devo expandir atendimento de 800 para 1200 beneficiários em 6 meses?
-Isso exigirá contratar 15 novos educadores e aumentar orçamento em 35%.
-```
-```
-Vale a pena investir R$ 500.000 em tecnologia para automatizar processos?
+Should I expand service from 800 to 1200 beneficiaries in 6 months?
+This will require hiring 15 new educators and increasing the budget by 35%.
 ```
 
-## ⚙️ Configuração
+```
+Is it worth investing R$ 500,000 in technology to automate processes?
+```
 
-Edite `config.py` para customizar:
+## ⚙️ Configuration
+
+Edit `config.py` to customize:
+
 ```python
-# Modelos
-config.model.ceo_model = "gemini-2.5-pro"        # CEO usa Pro
-config.model.default_model = "gemini-2.5-flash"  # Demais usam Flash
+# Models
+config.model.ceo_model = "gemini-2.5-pro"        # CEO uses Pro
+config.model.default_model = "gemini-2.5-flash"  # Others use Flash
 
-# Parâmetros
+# Parameters
 config.model.temperature = 0.3
 config.model.max_tokens = 8000
 
-# Idioma
+# Language
 config.language.output_language = 'pt-BR'
 ```
 
-## 🔧 Modelos Usados
+## 🔧 Models Used
 
-- **Gemini 2.5 Flash:** CSO, CMO, CFO, CRO
-- **Gemini 2.5 Pro:** CEO
+  - **Gemini 2.5 Flash:** CSO, CMO, CFO, CRO
+  - **Gemini 2.5 Pro:** CEO
 
 ## 🐛 Troubleshooting
 
 **API key not found**
-- Verifique `.env` com `GOOGLE_API_KEY`
+
+  - Check `.env` for `GOOGLE_API_KEY`
 
 **Timeout**
-- Aumente em `config.py`: `config.agents.timeout = 180`
 
-**Erro 503**
-- API temporariamente sobrecarregada, aguarde
+  - Increase in `config.py`: `config.agents.timeout = 180`
 
-## 📚 Referências
+**Error 503**
 
-- [Google ADK Docs](https://google.github.io/adk-docs/)
-- [Gemini API](https://ai.google.dev/api)
+  - API temporarily overloaded, please wait
+
+## 📚 References
+
+  - [Google ADK Docs](https://google.github.io/adk-docs/)
+  - [Gemini API](https://ai.google.dev/api)

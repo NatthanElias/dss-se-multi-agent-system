@@ -14,6 +14,11 @@ CEMA simulates an executive council with 5 specialist agents analyzing strategic
 - **⚖️ CRO** - Chief Risk Officer (SWOT Risk Analysis)
 - **🎯 CEO** - Chief Executive Officer (Synthesis and Final Decision)
 
+<div align="center">
+  <img src="static/tcc_DIAGRAMA_FinalBoss.drawio.png" alt="System diagram" width="500">
+</div>
+
+
 **Architecture:** Hybrid Multi-Agent System (Parallel + Sequential)
 
 ## 🚀 Setup

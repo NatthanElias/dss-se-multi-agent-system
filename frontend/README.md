@@ -1,62 +1,68 @@
-# CEMA Frontend - Interface Web
+# CEMA Frontend - Web Interface
 
-Interface web do sistema CEMA desenvolvida com Streamlit.
+CEMA system web interface developed with Streamlit.
 
-## 🎨 Funcionalidades
+## 🎨 Features
 
-- **📚 Página 1:** Visualização de documentos da base de conhecimento
-- **💬 Página 2:** Chat com o sistema multi-agente
-- **ℹ️ Página 3:** Informações do projeto
+- **ℹ️ Page 1:** Project information
+- **📚 Page 2:** Visualization of knowledge base documents
+- **💬 Page 3:** Chat with the multi-agent system
 
+## 🚀 Local Setup
 
-## 🚀 Setup Local
-
-### 1. Instalar dependências
+### 1. Install dependencies
 ```bash
 cd frontend
 python -m venv .venv
 source .venv/bin/activate  # Windows: .venv\Scripts\activate
 pip install -r requirements.txt
-```
+````
 
-### 2. Configurar Backend URL
+### 2\. Configure Backend URL
 
-Crie `.streamlit/secrets.toml`:
+Create `.streamlit/secrets.toml`:
+
 ```toml
 BACKEND_URL = "http://localhost:8000"
 ```
 
-### 3. Rodar
+### 3\. Run
+
 ```bash
 streamlit run app.py
 ```
 
-Acesse http://localhost:8501
+Access http://localhost:8501
 
-**Obs:** Mude porta com `--server.port 8502`
+**Note:** Change port with `--server.port 8502`
 
-## 🧪 Testando
+## 🧪 Testing
 
-1. **Página Documentos:** Selecione "PEQUENA" e navegue pelas abas
-2. **Página Chat:** Escolha empresa e faça uma pergunta
-3. **Aguarde:** 30-90 segundos para análise completa
+1.  **Documents Page:** Select "PEQUENA" or "MICROEMPRESA" and navigate through the tabs
+2.  **Chat Page:** Ask a question with PEQUENA as base
+3.  **Wait:** 30-90 seconds for complete analysis
 
 ## 🐛 Troubleshooting
 
 **Connection refused**
-- Verifique se backend está rodando
-- Confirme `BACKEND_URL` em `secrets.toml`
+
+  - Check if backend is running
+  - Confirm `BACKEND_URL` in `secrets.toml`
 
 **Timeout**
-- Backend pode estar lento (cold start Railway: ~60s)
-- Aumente timeout em `2_💬_Sistema_CEMA.py`
 
-**Documentos não aparecem**
-- Copie `knowledge_base/` do backend
+  - Backend might be slow (Railway cold start: \~60s)
+  - Increase timeout in `2_💬_Sistema_CEMA.py`
+
+**Documents not appearing**
+
+  - Copy `knowledge_base/` from backend
+
+
 ```bash
 cp -r ../backend/cema_system/knowledge_base ./
 ```
 
-## 📚 Referências
+## 📚 References
 
-- [Streamlit Docs](https://docs.streamlit.io/)
+  - [Streamlit Docs](https://docs.streamlit.io/)
