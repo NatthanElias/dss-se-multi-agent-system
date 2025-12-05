@@ -4,7 +4,7 @@ CEMA system backend implemented with Google ADK, containing the multi-agent arch
 
 ## 🏗️ Architecture
 <div align="center">
-  <img src="../static/tcc_DIAGRAMA_FinalBoss.drawio.png" alt="System diagram" width="500">
+  <img src="../static/tcc_DIAGRAMA_FinalBoss.drawio.png" alt="System diagram" width="1000">
 </div>
 
 ```
@@ -129,3 +129,4 @@ config.language.output_language = 'pt-BR'
 
   - [Google ADK Docs](https://google.github.io/adk-docs/)
   - [Gemini API](https://ai.google.dev/api)
+
