@@ -1,54 +1,52 @@
-# CEMA - Conselho Executivo Multi-Agente
+# CEMA - Multi-Agent Executive Council
 
-Sistema de Apoio à Decisão Estratégica baseado em Inteligência Artificial Multi-Agente para Empresas Sociais e Consultorias ESG.
+Strategic Decision Support System based on Multi-Agent Artificial Intelligence for Social Enterprises and ESG Consultancies.
 
-Desenvolvido como Trabalho de Conclusão de Curso do **Bacharelado em Ciência da Computação** do **IFSUL Campus Passo Fundo**.
+Developed as a Bachelor's Thesis for the **Bachelor of Computer Science** at **IFSUL Passo Fundo Campus**.
 
-## 🎯 Sobre o Projeto
+## 🎯 About the Project
 
-O CEMA simula um conselho executivo com 5 agentes especialistas que analisam dilemas estratégicos:
+CEMA simulates an executive council with 5 specialist agents analyzing strategic dilemmas:
 
-- **👥 CSO** - Chief Social Officer (Impacto Social)
-- **📊 CMO** - Chief Marketing Officer (Mercado e Competição)
-- **💰 CFO** - Chief Financial Officer (Viabilidade Financeira)
-- **⚖️ CRO** - Chief Risk Officer (Análise de Riscos SWOT)
-- **🎯 CEO** - Chief Executive Officer (Síntese e Decisão Final)
+- **👥 CSO** - Chief Social Officer (Social Impact)
+- **📊 CMO** - Chief Marketing Officer (Market and Competition)
+- **💰 CFO** - Chief Financial Officer (Financial Viability)
+- **⚖️ CRO** - Chief Risk Officer (SWOT Risk Analysis)
+- **🎯 CEO** - Chief Executive Officer (Synthesis and Final Decision)
 
-**Arquitetura:** Hybrid Multi-Agent System (Parallel + Sequential)
+**Architecture:** Hybrid Multi-Agent System (Parallel + Sequential)
 
 ## 🚀 Setup
 
-Cheque os respectivos README.md.
+Check the respective README.md files.
 
-### Backend (Sistema Multi-Agente)
-Ver backend/README.md
+### Backend (Multi-Agent System)
+See backend/README.md
 
-### Frontend (Interface Web)
-Ver frontend/README.md
+### Frontend (Web Interface)
+See frontend/README.md
 
-### Geração de Dados Sintéticos (Opcional)
-Ver synthetic-data-generation/README.md
+### Synthetic Data Generation (Optional)
+See synthetic-data-generation/README.md
 
 
-## 🔧 Stack Tecnológica
+## 🔧 Tech Stack
 
-| Componente | Tecnologia | Custo |
+| Component | Technology | Cost |
 |------------|------------|-------|
-| **LLM** | Google Gemini 2.5 Flash/Pro | Tier gratuito |
-| **Framework Multi-Agent** | Google ADK | Open-source |
-| **Backend Deploy** | Railway | ~$0-5/mês |
-| **Frontend** | Streamlit + Streamlit Cloud | Gratuito |
-| **Dados Sintéticos** | Ollama com Gemma-3-Gaia-PT-BR | Open-source |
+| **LLM** | Google Gemini 2.5 Flash/Pro | Free tier |
+| **Multi-Agent Framework** | Google ADK | Open-source |
+| **Backend Deploy** | Railway | ~$0-5/month |
+| **Frontend** | Streamlit + Streamlit Cloud | Free |
+| **Synthetic Data** | Ollama with Gemma-3-Gaia-PT-BR | Open-source |
 
-**Custo total para rodar local:** R$ 0,00  
-**Custo total deployado:** R$ 0-5/mês
+**Total cost to run locally:** R$ 0.00  
+**Total deployed cost:** R$ 0-5/month
 
-## 👨‍💻 Autor
+## 👨‍💻 Author
 
-**Natthan Elias**  
-[LinkedIn](https://www.linkedin.com/in/natthan-elias/)
+**Natthan Elias** [LinkedIn](https://www.linkedin.com/in/natthan-elias/)
 
-## 📄 Licença
+## 📄 License
 
-Material educacional de uso livre para fins acadêmicos.
-
+Educational material free for academic use.
