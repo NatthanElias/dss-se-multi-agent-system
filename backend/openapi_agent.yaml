@@ -1,22 +1,32 @@
 openapi: 3.0.3
 info:
-  title: CEMA Backend API
-  description: API simplificada para o Sistema Multiagente CEMA
+  title: CEMA Agent Service API
+  description: Microserviço de Agente do Sistema CEMA (Google ADK).
   version: 1.0.0
+  contact:
+    name: CEMA Team
 
 servers:
-  - url: http://localhost:8000
-    description: Servidor de desenvolvimento
+  - url: http://localhost:8080
+    description: Agent Service
+
+tags:
+  - name: Agent
+    description: Execução do agente
+  - name: Sessions
+    description: Gerenciamento de sessões
+  - name: Health
+    description: Verificação de status
 
 paths:
-  /health:
+  /api/health:
     get:
-      summary: Verificar saúde da API
+      summary: Health check do Agent Service
       tags:
         - Health
       responses:
         '200':
-          description: API funcionando
+          description: Agent Service funcionando
           content:
             application/json:
               schema:
@@ -27,13 +37,15 @@ paths:
                     example: healthy
                   service:
                     type: string
-                    example: cema-backend
+                    example: agent-service
 
-  /apps/{appName}/users/{userId}/sessions/{sessionId}:
+  /api/apps/{appName}/users/{userId}/sessions/{sessionId}:
     post:
       summary: Criar nova sessão
       tags:
         - Sessions
+      security:
+        - bearerAuth: []
       parameters:
         - name: appName
           in: path
@@ -68,11 +80,19 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Session'
+        '401':
+          description: Não autorizado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
 
     get:
       summary: Obter detalhes da sessão
       tags:
         - Sessions
+      security:
+        - bearerAuth: []
       parameters:
         - name: appName
           in: path
@@ -98,13 +118,19 @@ paths:
                 $ref: '#/components/schemas/Session'
         '404':
           description: Sessão não encontrada
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
 
-  /run:
+  /api/run:
     post:
       summary: Executar agente
       description: Envia mensagem para o agente e retorna todos os eventos
       tags:
         - Agent
+      security:
+        - bearerAuth: []
       requestBody:
         required: true
         content:
@@ -130,29 +156,22 @@ paths:
                   $ref: '#/components/schemas/Event'
         '400':
           description: Campos obrigatórios faltando
-        '500':
-          description: Erro interno
-
-  /list-apps:
-    get:
-      summary: Listar aplicações disponíveis
-      tags:
-        - Apps
-      responses:
-        '200':
-          description: Lista de apps
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  apps:
-                    type: array
-                    items:
-                      type: string
-                example:
-                  apps:
-                    - cema_system
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Não autorizado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Erro interno
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
 
 components:
   schemas:
@@ -211,8 +230,7 @@ components:
       properties:
         author:
           type: string
-        invocationId:
-          type: string
+          example: cso_agent
         content:
           type: object
           properties:
@@ -222,6 +240,18 @@ components:
               type: array
               items:
                 type: object
-                properties:
-                  text:
-                    type: string
+
+    Error:
+      type: object
+      properties:
+        detail:
+          type: string
+          example: Error message
+
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: |
+        JWT token necessário.

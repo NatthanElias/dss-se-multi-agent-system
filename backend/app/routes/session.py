@@ -4,7 +4,7 @@ from app.controllers import session_controller
 router = APIRouter(tags=["Sessions"])
 
 
-@router.post("/apps/{app_name}/users/{user_id}/sessions/{session_id}")
+@router.post("/api/apps/{app_name}/users/{user_id}/sessions/{session_id}")
 async def create_session(app_name: str, user_id: str, session_id: str, body: dict = None):
     """Create a new session with optional initial state."""
     try:
@@ -19,7 +19,7 @@ async def create_session(app_name: str, user_id: str, session_id: str, body: dic
         raise HTTPException(status_code=500, detail=str(e))
 
 
-@router.get("/apps/{app_name}/users/{user_id}/sessions/{session_id}")
+@router.get("/api/apps/{app_name}/users/{user_id}/sessions/{session_id}")
 async def get_session(app_name: str, user_id: str, session_id: str):
     """Get session details."""
     session = await session_controller.get_session(app_name, user_id, session_id)

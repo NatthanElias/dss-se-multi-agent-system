@@ -4,7 +4,7 @@ from app.controllers import agent_controller
 router = APIRouter(tags=["Agent"])
 
 
-@router.post("/run")
+@router.post("/api/run")
 async def run_agent(body: dict):
     """
     Execute the agent and return all events.
