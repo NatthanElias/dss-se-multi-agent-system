@@ -116,3 +116,8 @@ venv.bak/
 # deploy files
 .devcontainer
 .devcontainer/
+
+# Node
+
+node_modules
+node_modules/
