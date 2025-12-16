@@ -1,0 +1,227 @@
+openapi: 3.0.3
+info:
+  title: CEMA Backend API
+  description: API simplificada para o Sistema Multiagente CEMA
+  version: 1.0.0
+
+servers:
+  - url: http://localhost:8000
+    description: Servidor de desenvolvimento
+
+paths:
+  /health:
+    get:
+      summary: Verificar saúde da API
+      tags:
+        - Health
+      responses:
+        '200':
+          description: API funcionando
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: healthy
+                  service:
+                    type: string
+                    example: cema-backend
+
+  /apps/{appName}/users/{userId}/sessions/{sessionId}:
+    post:
+      summary: Criar nova sessão
+      tags:
+        - Sessions
+      parameters:
+        - name: appName
+          in: path
+          required: true
+          schema:
+            type: string
+          example: cema_system
+        - name: userId
+          in: path
+          required: true
+          schema:
+            type: string
+          example: user_123
+        - name: sessionId
+          in: path
+          required: true
+          schema:
+            type: string
+          example: session_456
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+            example:
+              initialContext: "Análise de mercado tech"
+      responses:
+        '200':
+          description: Sessão criada
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Session'
+
+    get:
+      summary: Obter detalhes da sessão
+      tags:
+        - Sessions
+      parameters:
+        - name: appName
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: userId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: sessionId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Dados da sessão
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Session'
+        '404':
+          description: Sessão não encontrada
+
+  /run:
+    post:
+      summary: Executar agente
+      description: Envia mensagem para o agente e retorna todos os eventos
+      tags:
+        - Agent
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RunRequest'
+            example:
+              appName: cema_system
+              userId: user_123
+              sessionId: session_456
+              newMessage:
+                role: user
+                parts:
+                  - text: "Analise as tendências do setor de tecnologia"
+      responses:
+        '200':
+          description: Eventos do agente
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Event'
+        '400':
+          description: Campos obrigatórios faltando
+        '500':
+          description: Erro interno
+
+  /list-apps:
+    get:
+      summary: Listar aplicações disponíveis
+      tags:
+        - Apps
+      responses:
+        '200':
+          description: Lista de apps
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  apps:
+                    type: array
+                    items:
+                      type: string
+                example:
+                  apps:
+                    - cema_system
+
+components:
+  schemas:
+    Session:
+      type: object
+      properties:
+        id:
+          type: string
+          example: session_456
+        appName:
+          type: string
+          example: cema_system
+        userId:
+          type: string
+          example: user_123
+        state:
+          type: object
+        events:
+          type: array
+          items:
+            type: object
+        lastUpdateTime:
+          type: string
+          format: date-time
+
+    RunRequest:
+      type: object
+      required:
+        - appName
+        - userId
+        - sessionId
+        - newMessage
+      properties:
+        appName:
+          type: string
+        userId:
+          type: string
+        sessionId:
+          type: string
+        newMessage:
+          type: object
+          properties:
+            role:
+              type: string
+              enum: [user, model]
+            parts:
+              type: array
+              items:
+                type: object
+                properties:
+                  text:
+                    type: string
+
+    Event:
+      type: object
+      properties:
+        author:
+          type: string
+        invocationId:
+          type: string
+        content:
+          type: object
+          properties:
+            role:
+              type: string
+            parts:
+              type: array
+              items:
+                type: object
+                properties:
+                  text:
+                    type: string

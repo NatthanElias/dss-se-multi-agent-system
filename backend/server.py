@@ -1,47 +1,32 @@
-import os
-import json
 import uvicorn
+from pathlib import Path
+from dotenv import load_dotenv
 from fastapi import FastAPI
-from google.adk.cli.fast_api import get_fast_api_app
 
+# Load environment variables from cema_system/.env
+env_path = Path(__file__).parent / "cema_system" / ".env"
+load_dotenv(env_path)
 
-# Process Vertex AI credentials from environment variable
-if creds_json := os.getenv("GOOGLE_APPLICATION_CREDENTIALS_JSON"):
-    creds_path = "/tmp/gcp-credentials.json"
-    with open(creds_path, "w") as f:
-        json.dump(json.loads(creds_json), f)
-    os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = creds_path
-    print(f"✅ Credentials loaded from env var to {creds_path}")
+from app.routes import health, session, agent
 
-
-# Get base ADK FastAPI app
-app: FastAPI = get_fast_api_app(
-    agents_dir=os.path.dirname(__file__),  # Directory containing cema_system/
-    allow_origins=["*"],  # CORS - for for testing * is ok
-    web=False  # Disable dev UI in production
+app = FastAPI(
+    title="CEMA Backend API",
+    description="API para o Sistema Multiagente Educacional CEMA",
+    version="1.0.0",
+    docs_url="/docs",
+    redoc_url="/redoc"
 )
 
-# Add custom health check endpoint
-@app.get("/health")
-async def health_check():
-    return {
-        "status": "healthy",
-        "service": "cema-backend",
-        "agent": "cema_system"
-    }
+# Register routes
+app.include_router(health.router)
+app.include_router(session.router)
+app.include_router(agent.router)
 
-# Add agent info endpoint (optional)
-@app.get("/info")
-async def agent_info():
-    try:
-        from cema_system.agent import root_agent
-        return {
-            "agent_name": root_agent.name,
-            "description": root_agent.description
-        }
-    except Exception as e:
-        return {"error": str(e)}
+
+# Root endpoint
+@app.get("/")
+async def root():
+    return {"message": "CEMA Backend API", "docs": "/docs"}
 
 if __name__ == "__main__":
-    port = int(os.getenv("PORT", 8000))
-    uvicorn.run(app, host="0.0.0.0", port=port)
+    uvicorn.run("server:app", host="0.0.0.0", port=8000, reload=True)
